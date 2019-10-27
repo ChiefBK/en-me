@@ -55,6 +55,7 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (11.0.1)
+    coderay (1.1.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     database_cleaner (1.7.0)
@@ -90,6 +91,14 @@ GEM
     nio4r (2.4.0)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-nav (0.3.0)
+      pry (>= 0.9.10, < 0.13.0)
+    pry-remote (0.1.8)
+      pry (~> 0.9)
+      slop (~> 3.0)
     puma (3.12.1)
     rack (2.0.7)
     rack-test (1.1.0)
@@ -142,6 +151,7 @@ GEM
     ruby_dep (1.5.0)
     shoulda-matchers (4.0.1)
       activesupport (>= 4.2.0)
+    slop (3.6.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -173,6 +183,9 @@ DEPENDENCIES
   factory_bot_rails
   faker!
   listen (>= 3.0.5, < 3.2)
+  pry (~> 0.12.2)
+  pry-nav
+  pry-remote
   puma (~> 3.11)
   rails (~> 5.2.3)
   rspec-rails
@@ -183,7 +196,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 2.3.7p456
+   ruby 2.6.5p114
 
 BUNDLED WITH
    2.0.2
