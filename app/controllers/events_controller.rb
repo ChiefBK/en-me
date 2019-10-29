@@ -6,10 +6,17 @@ class EventsController < ApplicationController
   end
 
   def create
-    raise Error::Responses::InvalidParamsError.new "the message"
+    event_name = params[:name]
+    location_id = params[:location_id]
 
-    Event.new do |e|
-      e.name = params[:name]
+    event = Event.new do |e|
+      e.name = event_name
+    end
+
+    event.save
+
+    if not event
+      raise Error::Responses::InvalidParamsError.new "There was a problem creating your event"
     end
 
   end
