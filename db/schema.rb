@@ -12,10 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2019_09_10_033854) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comments", force: :cascade do |t|
     t.text "text"
-    t.integer "event_id"
-    t.integer "user_id"
+    t.bigint "event_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_comments_on_event_id"
@@ -23,8 +26,8 @@ ActiveRecord::Schema.define(version: 2019_09_10_033854) do
   end
 
   create_table "event_reminders", force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "user_id"
+    t.bigint "event_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "trigger_at"
     t.datetime "updated_at", null: false
@@ -35,15 +38,15 @@ ActiveRecord::Schema.define(version: 2019_09_10_033854) do
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.datetime "starts_at"
-    t.integer "location_id"
+    t.bigint "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["location_id"], name: "index_events_on_location_id"
   end
 
   create_table "invites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "event_id"
+    t.bigint "user_id"
+    t.bigint "event_id"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -53,8 +56,8 @@ ActiveRecord::Schema.define(version: 2019_09_10_033854) do
 
   create_table "items", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id"
-    t.integer "event_id"
+    t.bigint "user_id"
+    t.bigint "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_items_on_event_id"
@@ -75,7 +78,7 @@ ActiveRecord::Schema.define(version: 2019_09_10_033854) do
   create_table "phones", force: :cascade do |t|
     t.string "phone_number"
     t.boolean "is_primary"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_phones_on_user_id"
@@ -83,7 +86,7 @@ ActiveRecord::Schema.define(version: 2019_09_10_033854) do
 
   create_table "sms_messages", force: :cascade do |t|
     t.text "text"
-    t.integer "phone_id"
+    t.bigint "phone_id"
     t.datetime "sent_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -99,4 +102,15 @@ ActiveRecord::Schema.define(version: 2019_09_10_033854) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "comments", "events"
+  add_foreign_key "comments", "users"
+  add_foreign_key "event_reminders", "events"
+  add_foreign_key "event_reminders", "users"
+  add_foreign_key "events", "locations"
+  add_foreign_key "invites", "events"
+  add_foreign_key "invites", "users"
+  add_foreign_key "items", "events"
+  add_foreign_key "items", "users"
+  add_foreign_key "phones", "users"
+  add_foreign_key "sms_messages", "phones"
 end

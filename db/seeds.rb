@@ -38,15 +38,3 @@ comments = Comment.create([
                               {user_id: users[6].id, event_id: event.id, text: Faker::Lorem.sentence},
                               {user_id: users[9].id, event_id: event.id, text: Faker::Lorem.sentence},
                           ])
-
-event.users_going << users[0]
-event.users_going << users[1]
-event.users_going << users[2]
-event.users_not_going << users[3]
-event.users_invited << users[4]
-event.users_invited << users[5]
-event.users_invited << users[6]
-event.users_invited << users[7]
-event.users_invited << users[8]
-event.users_invited << users[9]
-
