@@ -15,9 +15,10 @@ class EventsController < ApplicationController
 
     event.save
 
-    if not event
+    unless event.errors.size == 0
       raise Error::Responses::InvalidParamsError.new "There was a problem creating your event"
     end
 
+    head :created
   end
 end
