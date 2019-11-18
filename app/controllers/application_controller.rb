@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+  include ActionController::Cookies
+
   rescue_from StandardError do |e|
     respond_with_error(:internal_server_error, "server error", e.message)
   end

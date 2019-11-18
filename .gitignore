@@ -28,3 +28,6 @@
 
 # Ignore Jetbrains project settings folder
 .idea
+
+# Ignore environment file
+.env

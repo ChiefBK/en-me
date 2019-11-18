@@ -25,6 +25,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # use postgresql as database
 gem 'pg', '~> 0.18.4'
 
+gem 'dotenv-rails', groups: [:development, :test]
+
+gem 'jwt'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 

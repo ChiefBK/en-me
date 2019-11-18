@@ -1,19 +1,28 @@
 class SessionsController < ApplicationController
   def create
-    user_email = params[:email]
-    user_phone_number = params[:phone_number]
+    provided_email = params[:email]
+    provided_phone_number = params[:phone_number]
     user = nil
 
-    if !user_email.nil?
-      user = User.find_by(email: user_email)
-    elsif !user_phone_number.nil?
-      user = User.joins(:phones).find_by(phones: { phone_number: user_phone_number})
+    if !provided_email.nil?
+      user = User.find_by(email: provided_email)
+    elsif !provided_phone_number.nil?
+      user = User.joins(:phones).find_by(phones: { phone_number: provided_phone_number})
     end
 
     if user.nil?
       # handle error - can not find user
+      return
     end
 
-    session[:current_user_id] = user[:id]
+    # if authentication is successful
+    payload = { user_id: user.id, creation_datetime: DateTime.now }
+    token = JWT.encode payload, ENV['SESSION_KEY_SECRET'], 'HS256'
+
+    cookies[:jwt_token] = token
+
+
+
+    head :created
   end
 end

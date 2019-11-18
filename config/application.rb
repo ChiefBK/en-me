@@ -35,6 +35,9 @@ module EnMe
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    # Use cookies for CSRF prevention and JSON web tokens (JWT)
+    config.middleware.use ActionDispatch::Cookies
+
     config.autoload_paths += ["#{config.root}/lib"]
   end
 end
