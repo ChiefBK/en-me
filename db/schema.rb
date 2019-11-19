@@ -14,57 +14,49 @@ ActiveRecord::Schema.define(version: 2019_09_10_033854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
-  create_table "comments", force: :cascade do |t|
+  create_table "comments", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.text "text"
-    t.bigint "event_id"
-    t.bigint "user_id"
+    t.uuid "event_id"
+    t.uuid "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_comments_on_event_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "event_reminders", force: :cascade do |t|
-    t.bigint "event_id"
-    t.bigint "user_id"
+  create_table "event_reminders", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid "event_id"
+    t.uuid "user_id"
     t.datetime "created_at", null: false
     t.datetime "trigger_at"
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_event_reminders_on_event_id"
-    t.index ["user_id"], name: "index_event_reminders_on_user_id"
   end
 
-  create_table "events", force: :cascade do |t|
+  create_table "events", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "name"
     t.datetime "starts_at"
-    t.bigint "location_id"
+    t.uuid "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["location_id"], name: "index_events_on_location_id"
   end
 
-  create_table "invites", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "event_id"
+  create_table "invites", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.uuid "event_id"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_invites_on_event_id"
-    t.index ["user_id"], name: "index_invites_on_user_id"
   end
 
-  create_table "items", force: :cascade do |t|
+  create_table "items", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "name"
-    t.bigint "user_id"
-    t.bigint "event_id"
+    t.uuid "user_id"
+    t.uuid "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_items_on_event_id"
-    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
-  create_table "locations", force: :cascade do |t|
+  create_table "locations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "address_line_one"
     t.string "address_line_two"
     t.string "city"
@@ -75,25 +67,23 @@ ActiveRecord::Schema.define(version: 2019_09_10_033854) do
     t.string "name"
   end
 
-  create_table "phones", force: :cascade do |t|
+  create_table "phones", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "phone_number"
     t.boolean "is_primary"
-    t.bigint "user_id"
+    t.uuid "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_phones_on_user_id"
   end
 
-  create_table "sms_messages", force: :cascade do |t|
+  create_table "sms_messages", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.text "text"
-    t.bigint "phone_id"
+    t.uuid "phone_id"
     t.datetime "sent_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["phone_id"], name: "index_sms_messages_on_phone_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "email"
     t.string "first_name"
     t.string "last_name"
@@ -102,15 +92,4 @@ ActiveRecord::Schema.define(version: 2019_09_10_033854) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "comments", "events"
-  add_foreign_key "comments", "users"
-  add_foreign_key "event_reminders", "events"
-  add_foreign_key "event_reminders", "users"
-  add_foreign_key "events", "locations"
-  add_foreign_key "invites", "events"
-  add_foreign_key "invites", "users"
-  add_foreign_key "items", "events"
-  add_foreign_key "items", "users"
-  add_foreign_key "phones", "users"
-  add_foreign_key "sms_messages", "phones"
 end

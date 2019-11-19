@@ -23,7 +23,7 @@ gem 'puma', '~> 3.11'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 # use postgresql as database
-gem 'pg', '~> 0.18.4'
+gem 'pg', '~> 1.1', '>= 1.1.4'
 
 gem 'dotenv-rails', groups: [:development, :test]
 

@@ -1,8 +1,8 @@
 class CreateInvites < ActiveRecord::Migration[5.2]
   def change
-    create_table :invites do |t|
-      t.references :user, foreign_key: true
-      t.references :event, foreign_key: true
+    create_table :invites, id: :uuid, default: -> { "uuid_generate_v4()" } do |t|
+      t.uuid :user_id, foreign_key: true
+      t.uuid :event_id, foreign_key: true
       t.string :status
 
       t.timestamps
