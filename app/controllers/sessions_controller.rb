@@ -4,6 +4,8 @@ class SessionsController < ApplicationController
     provided_phone_number = params[:phone_number]
     user = nil
 
+    binding.pry
+
     if !provided_email.nil?
       user = User.find_by(email: provided_email)
     elsif !provided_phone_number.nil?
@@ -19,9 +21,7 @@ class SessionsController < ApplicationController
     payload = { user_id: user.id, creation_datetime: DateTime.now }
     token = JWT.encode payload, ENV['SESSION_KEY_SECRET'], 'HS256'
 
-    cookies[:jwt_token] = token
-
-
+    cookies['JWT-TOKEN'] = token
 
     head :created
   end
