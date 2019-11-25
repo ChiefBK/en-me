@@ -1,4 +1,4 @@
-class EventsController < ApplicationController
+class EventsController < AccessManagementController
   def index
     events = Event.all
 

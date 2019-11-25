@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     resources :events
     resources :users, only: [:create]
     resources :sessions, only: [:create]
+    resources :csrf_token, only: [:index]
   end
 end
