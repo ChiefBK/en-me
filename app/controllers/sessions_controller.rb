@@ -4,8 +4,6 @@ class SessionsController < ApplicationController
     provided_phone_number = params[:phone_number]
     user = nil
 
-    binding.pry
-
     if !provided_email.nil?
       user = User.find_by(email: provided_email)
     elsif !provided_phone_number.nil?
