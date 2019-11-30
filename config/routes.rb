@@ -6,5 +6,6 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     resources :sessions, only: [:create]
     resources :csrf_token, only: [:index]
+    resources :temporary_password, only: [:create]
   end
 end
