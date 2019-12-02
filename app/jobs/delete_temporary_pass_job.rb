@@ -1,9 +1,7 @@
 class DeleteTemporaryPassJob < ApplicationJob
-  include Passwords
-
   queue_as :default
 
-  def perform(user)
-    Passwords.delete_temporary_password(user)
+  def perform(temp_pass_id)
+    TemporaryPassword.destroy(temp_pass_id)
   end
 end

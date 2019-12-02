@@ -1,6 +1,4 @@
 class TemporaryPasswordController < ApplicationController
-  include Passwords
-
   def create
     to_email = params[:to_email]
 
@@ -11,7 +9,7 @@ class TemporaryPasswordController < ApplicationController
       return
     end
 
-    temp_pass = register_temporary_password(user, 5.minutes)
+    temp_pass = Passwords.register_temporary_password(user, 10.minutes)
     SendTemporaryPassJob.perform_later(to_email, temp_pass)
     head :ok
   end

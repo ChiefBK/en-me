@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_10_033854) do
+ActiveRecord::Schema.define(version: 2019_12_02_051857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,13 @@ ActiveRecord::Schema.define(version: 2019_09_10_033854) do
     t.text "text"
     t.uuid "phone_id"
     t.datetime "sent_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "temporary_passwords", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "password"
+    t.uuid "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
