@@ -7,11 +7,11 @@ class SessionsController < ApplicationController
     if !provided_email.nil?
       user = User.find_by(email: provided_email)
     elsif !provided_phone_number.nil?
-      user = User.joins(:phones).find_by(phones: { phone_number: provided_phone_number})
+      user = User.find_by_phone_number(provided_phone_number)
     end
 
     if user.nil?
-      # handle error - can not find user
+      head :not_found
       return
     end
 
