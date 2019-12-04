@@ -25,8 +25,7 @@ class SessionsController < ApplicationController
     end
 
     # if authentication is successful
-    payload = { user_id: user.id, creation_datetime: DateTime.now }
-    token = JWT.encode payload, ENV['SESSION_KEY_SECRET'], 'HS256'
+    token = JsonWebToken.create_token(user)
 
     cookies['JWT-TOKEN'] = token
 
