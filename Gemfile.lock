@@ -972,10 +972,6 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    rspec (3.9.0)
-      rspec-core (~> 3.9.0)
-      rspec-expectations (~> 3.9.0)
-      rspec-mocks (~> 3.9.0)
     rspec-core (3.9.0)
       rspec-support (~> 3.9.0)
     rspec-expectations (3.9.0)
@@ -1036,7 +1032,6 @@ DEPENDENCIES
   pry-remote
   puma (~> 3.11)
   rails (~> 5.2.3)
-  rspec (~> 3.5)
   rspec-rails (~> 3.9)
   shoulda-matchers
   spring

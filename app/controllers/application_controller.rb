@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  include ActionController::Cookies, AWS::Email
+  include ActionController::Cookies, AWS::Email, JsonWebToken, CSRFToken
 
   rescue_from StandardError do |e|
     respond_with_error(:internal_server_error, "server error", e.message)

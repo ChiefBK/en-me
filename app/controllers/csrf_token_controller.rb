@@ -1,9 +1,6 @@
 class CsrfTokenController < ApplicationController
   def index
-    csrf_token = SecureRandom.hex 32
-
-    cookies["CSRF-TOKEN"] = csrf_token
-
+    set_response_csrf_cookie
     head :ok
   end
 end

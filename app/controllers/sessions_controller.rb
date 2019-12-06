@@ -25,9 +25,7 @@ class SessionsController < ApplicationController
     end
 
     # if authentication is successful
-    token = JsonWebToken.create_token(user)
-
-    cookies['JWT-TOKEN'] = token
+    set_jwt_cookie(user)
 
     head :created
   end
