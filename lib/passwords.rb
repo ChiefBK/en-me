@@ -14,6 +14,6 @@ module Passwords
   end
 
   def self.generate_password
-    (SecureRandom.random_number * 10000000).to_s[0...6]
+    SecureRandom.random_number.to_s[2..7]
   end
 end
