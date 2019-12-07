@@ -13,9 +13,7 @@ module Passwords
     temp_pass.password == password_to_check
   end
 
-  def self.generate_password(length = 6)
-    random_hex_string = SecureRandom.hex
-    random_dec_string = Integer("0x#{random_hex_string}").to_s
-    random_dec_string[0...length]
+  def self.generate_password
+    (SecureRandom.random_number * 10000000).to_s[0...6]
   end
 end
