@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
   before do
-    user = create(:user)
+    user = create(:user_with_email)
     create(:event, { name: 'lolla' })
     create(:event, { name: 'forest' })
     create(:event, { name: 'mamby' })

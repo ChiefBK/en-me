@@ -8,9 +8,9 @@ module Passwords
     temp_pass.password
   end
 
-  def self.check_temporary_password(user, password_to_check)
+  def self.check_temporary_password?(user, password_to_check)
     temp_pass = TemporaryPassword.temporary_password_for_user(user)
-    temp_pass.password == password_to_check
+    temp_pass != nil && password_to_check != nil && temp_pass.password == password_to_check
   end
 
   def self.generate_password

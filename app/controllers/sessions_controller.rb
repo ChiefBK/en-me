@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       return
     end
 
-    entered_correct_password = Passwords.check_temporary_password(user, provided_temporary_password)
+    entered_correct_password = Passwords.check_temporary_password?(user, provided_temporary_password)
 
     unless entered_correct_password
       head :unauthorized
