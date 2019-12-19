@@ -10,7 +10,7 @@ class TemporaryPasswordController < ApplicationController
     end
 
     temp_pass = Passwords.register_temporary_password(user, 10.minutes)
-    SendTemporaryPassJob.perform_later(to_email, temp_pass)
-    head :ok
+    PasswordMailer.with(email: to_email, password: temp_pass).send_temp_pass.deliver_later
+    head :created
   end
 end
