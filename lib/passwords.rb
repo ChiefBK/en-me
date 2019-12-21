@@ -5,7 +5,7 @@ module Passwords
 
     # TODO - what to do with temporary passwords if multiple are generated for same user
     DeleteTemporaryPassJob.set(wait: duration).perform_later(temp_pass.id)
-    temp_pass.password
+    temp_pass
   end
 
   def self.check_temporary_password?(user, password_to_check)
