@@ -32,6 +32,9 @@ gem 'jwt'
 
 gem 'aws-sdk', '~> 3'
 
+# Serialize Ruby objects in JSON API format
+gem 'fast_jsonapi'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
