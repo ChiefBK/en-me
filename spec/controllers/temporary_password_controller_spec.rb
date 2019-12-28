@@ -24,9 +24,5 @@ RSpec.describe TemporaryPasswordController, type: :controller do
         end
       end
     end
-
-    context 'invalid input' do
-
-    end
   end
 end
