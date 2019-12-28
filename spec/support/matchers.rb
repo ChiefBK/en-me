@@ -14,6 +14,6 @@ RSpec::Matchers.define :have_record_with_attribute_and_value do |index, attribut
   end
 
   failure_message do |_response_body|
-    "expected response body to have record at index '#{index}' to have attribute '#{attribute}' with value '#{value}'"
+    "expected record at index '#{index}' of response body to have attribute '#{attribute}' with value '#{value}'"
   end
 end
