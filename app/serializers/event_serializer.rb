@@ -1,11 +1,3 @@
-class EventSerializer
-  include FastJsonapi::ObjectSerializer
-
-  attribute :name
-  attribute :description
-
-  attribute :starts_at
-  def starts_at
-    DateTime.now
-  end
+class EventSerializer < ApplicationSerializer
+  attributes :name, :description, :starts_at
 end
