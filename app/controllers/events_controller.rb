@@ -1,7 +1,6 @@
 class EventsController < AccessManagementController
   def index
     events = Event.all
-    binding.pry
     render json: EventSerializer.new(events)
   end
 
