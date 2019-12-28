@@ -39,5 +39,6 @@ module EnMe
     config.middleware.use ActionDispatch::Cookies
 
     config.autoload_paths += ["#{config.root}/lib"]
+    config.autoload_paths << "#{config.root}/app/serializers"
   end
 end
