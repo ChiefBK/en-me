@@ -12,9 +12,11 @@ class User < ApplicationRecord
   validates :last_name, presence: { message: "A last name is required" }
   validates :email,
     presence: { message: "An email or a phone number is required" },
-    unless: ->(user) { user.phones.present? },
-    uniqueness: { message: "The email specified is already in use" },
-    format: { with: /\w+@\w+\.\w+/, message: "The email specified is invalid" }
+    unless: ->(user) { user.phones.present? }
+  validates :email,
+    unless: ->(user) { user.email.nil? },
+    format: { with: /\w+@\w+\.\w+/, message: "The email specified is invalid" },
+    uniqueness: { message: "The email specified is already in use" }
   validates :phones,
     presence: { message: "An email or a phone number is required" },
     unless: ->(user) { user.email.present? }
