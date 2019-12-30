@@ -1,7 +1,7 @@
 class EventsController < AccessManagementController
   def index
     events = Event.all
-    render json: EventSerializer.new(events)
+    render json: EventSerializer.new(events, options)
   end
 
   def create
@@ -19,5 +19,15 @@ class EventsController < AccessManagementController
     end
 
     head :created
+  end
+
+  def options
+    options = {}
+
+    if params[:include]
+      options[:include] = params[:include]
+    end
+
+    options
   end
 end
