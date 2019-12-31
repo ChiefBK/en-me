@@ -5,12 +5,17 @@ class CommentsController < AccessManagementController
 
   def create
     current_user = User.find(params[:current_user_id])
-    event = Event.find(params[:event_id])
+    event = nil
+
+    unless params[:event_id].nil?
+      event = Event.find(params[:event_id])
+    end
 
     comment = Comment.create(text: params[:text], event: event, user: current_user)
 
     unless comment.valid?
       head :unprocessable_entity
+      return
     end
 
     head :created

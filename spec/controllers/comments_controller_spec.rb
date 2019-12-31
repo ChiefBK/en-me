@@ -43,4 +43,39 @@ RSpec.describe CommentsController, type: :controller do
       end
     end
   end
+
+  describe '#create' do
+    let(:params) { {} }
+    let(:response) { post :create, params: params }
+
+    before do
+      @event1 = create(:event)
+    end
+
+    context 'provides all required params' do
+      let(:params) { { event_id: "#{@event1.id}", text: "a new comment!" } }
+
+      it 'successfully creates comment' do
+        expect(response.status).to eq(201)
+      end
+    end
+
+    context 'does not provide all required params' do
+      context 'event id param missing' do
+        let(:params) { { text: "a new comment!" } }
+
+        it 'returns unprocessable entity' do
+          expect(response.status).to eq(422)
+        end
+      end
+
+      context 'text param missing' do
+        let(:params) { { event_id: "#{@event1.id}" } }
+
+        it 'returns unprocessable entity' do
+          expect(response.status).to eq(422)
+        end
+      end
+    end
+  end
 end
