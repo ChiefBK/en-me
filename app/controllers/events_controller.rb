@@ -20,14 +20,4 @@ class EventsController < AccessManagementController
 
     head :created
   end
-
-  def options
-    options = {}
-
-    if params[:include]
-      options[:include] = params[:include]
-    end
-
-    options
-  end
 end

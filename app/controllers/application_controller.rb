@@ -18,4 +18,13 @@ class ApplicationController < ActionController::API
     render json: json, status: _status
   end
 
+  def options
+    options = {}
+
+    if params[:include]
+      options[:include] = params[:include]
+    end
+
+    options
+  end
 end

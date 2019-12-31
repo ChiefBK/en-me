@@ -25,6 +25,7 @@ class AccessManagementController < ApplicationController
 
     begin
       params[:jwt_payload], params[:jwt_header] = JWT.decode(cookie_jwt_token, ENV['SESSION_KEY_SECRET'], true, { algorithm: 'HS256' })
+      params[:current_user_id] = params[:jwt_payload][:user_id]
     rescue JWT::DecodeError
       puts "could not decode JWT token"
       head :unauthorized
