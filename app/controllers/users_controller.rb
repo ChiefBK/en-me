@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def index
+    render json: UserSerializer.new(User.all, options)
+  end
+
   def create
     errors = ActiveModel::Errors.new(self)
 

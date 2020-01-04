@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   scope 'api' do
     resources :events
     resources :comments, only: [:create, :index]
-    resources :users, only: [:create]
+    resources :users, only: [:create, :index]
     resources :sessions, only: [:create]
     resources :csrf_token, only: [:index]
     resources :temporary_password, only: [:create]

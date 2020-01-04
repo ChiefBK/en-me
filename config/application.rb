@@ -38,7 +38,7 @@ module EnMe
     # Use cookies for CSRF prevention and JSON web tokens (JWT)
     config.middleware.use ActionDispatch::Cookies
 
-    config.autoload_paths += ["#{config.root}/lib"]
+    config.eager_load_paths << Rails.root.join('lib')
     config.autoload_paths << "#{config.root}/app/serializers"
   end
 end
