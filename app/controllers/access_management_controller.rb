@@ -1,18 +1,7 @@
 class AccessManagementController < ApplicationController
-  before_action :verify_csrf_token, :verify_jwt_token
+  before_action :verify_jwt_token
 
   private
-
-  def verify_csrf_token
-    cookie_csrf_token = cookies['CSRF-TOKEN']
-    request_header_csrf_token = request.headers['CSRF-TOKEN']
-
-    if cookie_csrf_token.nil? || request_header_csrf_token.nil? || cookie_csrf_token != request_header_csrf_token
-      puts "CSRF token is nil"
-
-      head :unauthorized
-    end
-  end
 
   def verify_jwt_token
     cookie_jwt_token = cookies['JWT-TOKEN']

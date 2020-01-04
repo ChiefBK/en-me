@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def show
+    
+  end
+
   def index
     render json: UserSerializer.new(User.all, options)
   end
