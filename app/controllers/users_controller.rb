@@ -1,18 +1,10 @@
 class UsersController < ApplicationController
   def show
     user_id = params[:id]
-
-    if user_id.blank?
-      head :unprocessable_entity
-      return
-    end
+    if user_id.blank? then head :unprocessable_entity; return end
 
     user = User.find(user_id)
-
-    if user.nil?
-      head :not_found
-      return
-    end
+    if user.nil? then head :not_found; return end
 
     render json: UserSerializer.new(user, options)
   end
